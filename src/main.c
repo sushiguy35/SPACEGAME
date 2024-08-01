@@ -1,0 +1,21 @@
+#include "raylib.h"
+#include "player.h"
+
+int main(void)
+{
+    struct player P;
+    
+    InitWindow(800, 450, "raylib [core] example - basic window");
+
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawRectangle(P.x, P.y, 25, 50, RED);
+        EndDrawing();
+    }
+
+    CloseWindow();
+
+    return 0;
+}

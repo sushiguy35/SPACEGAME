@@ -5,17 +5,19 @@
 
 int playerMove(int *vy, int *vx)
 {
-    if (IsKeyDown(KEY_W))  (*vy)--;
-    if (IsKeyDown(KEY_S))  (*vy)++;
-    if (IsKeyDown(KEY_A))  (*vx)--;
-    if (IsKeyDown(KEY_D))  (*vx)++;
+    // Reset velocities before applying new input
+    *vy = 0;
+    *vx = 0;
+
+    // Check for key presses and set velocities accordingly
+    if (IsKeyDown(KEY_W))  (*vy) = -1;
+    if (IsKeyDown(KEY_S))  (*vy) = 1;
+    if (IsKeyDown(KEY_A))  (*vx) = -1;
+    if (IsKeyDown(KEY_D))  (*vx) = 1;
 
     // Apply friction when no keys are pressed
     if (!IsKeyDown(KEY_W) && !IsKeyDown(KEY_S)) *vy *= FRICTION;
     if (!IsKeyDown(KEY_A) && !IsKeyDown(KEY_D)) *vx *= FRICTION;
-
-    if (IsKeyDown(KEY_W) && IsKeyDown(KEY_S)) *vy *= 0;
-    if (IsKeyDown(KEY_A) && IsKeyDown(KEY_D)) *vx *= 0;
 
     return 0;
 }
